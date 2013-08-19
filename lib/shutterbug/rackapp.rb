@@ -22,13 +22,41 @@ module Shutterbug
       return good_response(response_text,'text/plain')
     end
 
+    def do_convert_pdf(req)
+      html     = req.POST()['content']  ||  ""
+      width    = req.POST()['width']    || 1000
+      height   = req.POST()['height']   ||  700
+      css      = req.POST()['css']      ||  ""
+
+      signature = @shutterbug.convert(@config.base_url(req), html, css, width, height)
+      response_text = "<object data='#{@config.pdf_path(signature)}' type='application/pdf'>"
+      return good_response(response_text,'text/plain')
+    end
+
+    def do_generate_pdf(req)
+      html     = req.POST()['content']  ||  ""
+      width    = req.POST()['width']    || 1000
+      height   = req.POST()['height']   ||  700
+      css      = req.POST()['css']      ||  ""
+
+      signature = @shutterbug.convert(@config.base_url(req), html, css, width, height)
+      response_text = "<a href='#{@config.pdf_path(signature)}' target='_blank'>PDF link</a>"
+      return good_response(response_text,'text/plain')
+    end
+
     def call env
       req = Rack::Request.new(env)
       case req.path
       when @config.convert_regex
         do_convert(req)
+      when @config.convert_pdf_regex
+        do_convert_pdf(req)
+      when @config.generate_pdf_regex
+        do_generate_pdf(req)
       when @config.png_regex
         good_response(@shutterbug.get_png_file($1),'image/png')
+      when @config.pdf_regex
+        good_response(@shutterbug.get_pdf_file($1),'application/pdf')
       when @config.html_regex
         good_response(@shutterbug.get_html_file($1),'text/html')
       when @config.js_regex

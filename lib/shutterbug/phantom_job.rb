@@ -3,6 +3,7 @@ module Shutterbug
 
     attr_accessor :png_file
     attr_accessor :html_file
+    attr_accessor :pdf_file
 
     def program
       Configuration.instance.phantom_bin_path
@@ -54,8 +55,16 @@ module Shutterbug
       File.join(base_path,"phantom_#{cache_key}.png")
     end
 
+    def pdffilename
+      File.join(base_path,"phantom_#{cache_key}.pdf")
+    end
+
     def rasterize_cl
       %x[#{self.program} #{self.rasterize_js} #{self.infilename} #{self.outfilename} #{@width}*#{@height}]
+    end
+
+    def rasterize_pdf
+      %x[#{self.program} #{self.rasterize_js} #{self.infilename} #{self.pdffilename} #{@width}*#{@height}]
     end
 
     def rasterize
@@ -65,6 +74,9 @@ module Shutterbug
       rasterize_cl()
       self.png_file  = PngFile.new(outfilename)
       self.html_file = HtmlFile.new(infilename)
+
+      rasterize_pdf()
+      self.pdf_file = PdfFile.new(pdffilename)
     end
   end
 end

@@ -13,7 +13,7 @@ module Shutterbug
       key = job.cache_key
       unless (@file_cache[key])
         job.rasterize
-        @file_cache[key] = {'html' => job.html_file, 'png' => job.png_file }
+        @file_cache[key] = {'html' => job.html_file, 'png' => job.png_file, 'pdf' => job.pdf_file }
       end
       return key
     end
@@ -26,6 +26,12 @@ module Shutterbug
 
     def get_html_file(sha)
       file = @file_cache[sha]['html']
+      file.open
+      return file
+    end
+
+    def get_pdf_file(sha)
+      file = @file_cache[sha]['pdf']
       file.open
       return file
     end

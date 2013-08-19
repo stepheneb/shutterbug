@@ -6,6 +6,7 @@ module Shutterbug
   autoload :BugFile,        "shutterbug/bug_file"
   autoload :HtmlFile,       "shutterbug/html_file"
   autoload :PngFile,        "shutterbug/png_file"
+  autoload :PdfFile,        "shutterbug/pdf_file"
   autoload :JsFile,         "shutterbug/js_file"
   autoload :PhantomJob,     "shutterbug/phantom_job"
 end

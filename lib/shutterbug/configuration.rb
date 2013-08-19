@@ -36,11 +36,32 @@ module Shutterbug
       /#{path_prefix}\/make_snapshot/
     end
 
+    def convert_pdf_path
+      "#{uri_prefix}#{path_prefix}/make_pdf"
+    end
+    def convert_pdf_regex
+      /#{path_prefix}\/make_pdf/
+    end
+
+    def generate_pdf_path
+      "#{uri_prefix}#{path_prefix}/generate_pdf"
+    end
+    def generate_pdf_regex
+      /#{path_prefix}\/generate_pdf/
+    end
+
     def png_path(sha='')
       "#{uri_prefix}#{path_prefix}/get_png/#{sha}"
     end
     def png_regex
       /#{path_prefix}\/get_png\/([^\/]+)/
+    end
+
+    def pdf_path(sha='')
+      "#{uri_prefix}#{path_prefix}/get_pdf/#{sha}"
+    end
+    def pdf_regex
+      /#{path_prefix}\/get_pdf\/([^\/]+)/
     end
 
     def html_path(sha='')
