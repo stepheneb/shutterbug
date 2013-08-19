@@ -530,6 +530,12 @@
     <button id="make-svg-inlined-image" class="shutterbug" data-src="#src-svg-inlined" data-dst="#image-svg-inlined-dst">Image Snapshot</button>
     <div id="image-svg-inlined-dst"></div>
 
+    <button id="make-svg-inlined-pdf" class="shutterbug" data-src="#src-svg-inlined" data-dst="#pdf-svg-inlined-dst">PDF Snapshot</button>
+    <div id="pdf-svg-inlined-dst"></div>
+
+    <button id="make-svg-inlined-pdf-link" class="shutterbug" data-src="#src-svg-inlined" data-dst="#pdf-svg-inlined-link-dst">link to PDF</button>
+    <div id="pdf-svg-inlined-link-dst"></div>
+
     <script type="text/javascript">
       $(document).ready(function(e) {
         $("button.shutterbug#make-svg-inlined-image").click(function(e) {
@@ -538,6 +544,20 @@
           var dst    = target.attr('data-dst');
           var bug    = new Shutterbug(src,dst,null,"xxyyz");
           bug.getDomSnapshot();
+        });
+        $("button.shutterbug#make-svg-inlined-pdf").click(function(e) {
+          var target = $(e.target);
+          var src    = target.attr('data-src');
+          var dst    = target.attr('data-dst');
+          var bug    = new Shutterbug(src,dst,null,"xxyyz");
+          bug.getDomPdf();
+        });
+        $("button.shutterbug#make-svg-inlined-pdf-link").click(function(e) {
+          var target = $(e.target);
+          var src    = target.attr('data-src');
+          var dst    = target.attr('data-dst');
+          var bug    = new Shutterbug(src,dst,null,"xxyyz");
+          bug.generatePdf();
         });
       });
     </script>
@@ -555,6 +575,12 @@
     <button id="make-svg-embed-image" class="shutterbug" data-src="#src-svg-embed" data-dst="#image-svg-embed-dst">Image Snapshot</button>
     <div id="image-svg-embed-dst"></div>
 
+    <button id="make-svg-embed-pdf" class="shutterbug" data-src="#src-svg-embed" data-dst="#pdf-svg-embed-dst">PDF Snapshot</button>
+    <div id="pdf-svg-embed-dst"></div>
+
+    <button id="make-svg-embed-pdf-link" class="shutterbug" data-src="#src-svg-embed" data-dst="#pdf-svg-embed-link-dst">link to PDF</button>
+    <div id="pdf-svg-embed-link-dst"></div>
+
     <script type="text/javascript">
       $(document).ready(function(e) {
         $("button.shutterbug#make-svg-embed-image").click(function(e) {
@@ -563,6 +589,20 @@
           var dst    = target.attr('data-dst');
           var bug    = new Shutterbug(src,dst,null,"xxyyz");
           bug.getDomSnapshot();
+        });
+        $("button.shutterbug#make-svg-embed-pdf").click(function(e) {
+          var target = $(e.target);
+          var src    = target.attr('data-src');
+          var dst    = target.attr('data-dst');
+          var bug    = new Shutterbug(src,dst,null,"xxyyz");
+          bug.getDomPdf();
+        });
+        $("button.shutterbug#make-svg-embed-pdf-link").click(function(e) {
+          var target = $(e.target);
+          var src    = target.attr('data-src');
+          var dst    = target.attr('data-dst');
+          var bug    = new Shutterbug(src,dst,null,"xxyyz");
+          bug.generatePdf();
         });
       });
     </script>
